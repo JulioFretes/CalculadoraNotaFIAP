@@ -1,0 +1,56 @@
+﻿@model Nota
+
+<div class="form-group col-2">
+    <label asp-for="Semestre"></label>
+    <div class="form-group col-6">
+        <select asp-for="Semestre" asp-items="@Html.GetEnumSelectList<SemestreAno>()" class="form-control">
+            <option>Selecione</option>
+        </select>
+    </div>
+</div>
+<div class="mb-3">
+    <label asp-for="NotaPrimeiroSemestre"></label>
+    <input asp-for="NotaPrimeiroSemestre" class="form-control" />
+</div>
+<div class="form-group col-4">
+    <label asp-for="Materia"></label>
+    <select asp-for="Materia" asp-items="@Html.GetEnumSelectList<Materia>()" class="form-control">
+        <option>Selecione</option>
+    </select>
+</div>
+<div class="form-group col-2">
+    <label asp-for="Cp1"></label>
+    <div class="form-group col-6">
+        <input asp-for="Cp1" class="form-control" />
+    </div>
+</div>
+<div class="form-group col-2">
+    <label asp-for="Cp2"></label>
+    <div class="form-group col-6">
+        <input asp-for="Cp2" class="form-control" />
+    </div>
+</div>
+<div class="form-group col-2">
+    <label asp-for="Cp3"></label>
+    <div class="form-group col-6">
+        <input asp-for="Cp3" class="form-control" />
+    </div>
+</div>
+<div class="form-group col-2">
+    <label asp-for="Sprint1"></label>
+    <div class="form-group col-6">
+        <input asp-for="Sprint1" class="form-control" />
+    </div>
+</div>
+<div class="form-group col-2">
+    <label asp-for="Sprint2"></label>
+    <div class="form-group col-6">
+        <input asp-for="Sprint2" class="form-control" />
+    </div>
+</div>
+<div class="form-group col-2">
+    <label asp-for="GlobalSolution"></label>
+    <div class="form-group col-6">
+        <input asp-for="GlobalSolution" class="form-control" />
+    </div>
+</div>

@@ -1,0 +1,76 @@
+﻿@model List<Nota>
+
+@{
+    ViewData["Title"] = "Notas";
+    ViewBag.Subtitulo = "Notas";
+}
+
+<header class="d-flex justify-content-between align-items-center">
+    <div>
+        <h1 class="text-primary">@ViewBag.Subtitulo</h1>
+    </div>
+    <div>
+        <a asp-action="Register" class="btn btn-primary">Nova nota</a>
+    </div>
+</header>
+<hr/>
+
+<partial name="_PartialMessage" />
+
+<alert texto="@TempData["value"]" attribute="dismissible"></alert>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Matéria</th>
+            <th scope="col">Semestre</th>
+            <th scope="col">Média checkpoints</th>
+            <th scope="col">Média do Semestre</th>
+            <th scope="col">Média Final</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var nota in Model)
+        {
+            <tr class="table-dark">
+                <td scope="row">@nota.Materia</td>
+                <td scope="row">@nota.Semestre</td>
+                <td scope="row">@nota.Media</td>
+                <td scope="row">@(nota.Semestre == SemestreAno.Primeiro ? (Math.Round((nota.Media + (nota.GlobalSolution * 0.6m)) * 0.4m, 2).ToString()) : (Math.Round((nota.Media + (nota.GlobalSolution * 0.6m)) * 0.6m, 2).ToString()))</td>
+                <td scope="row">@nota.MediaFinal</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@nota.Id" class="btn btn-sm btn-secondary">
+                        <i class="bi-pencil" title="Edit"></i>
+                    </a>
+                    <button onclick="remove.value = @nota.Id" type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <i class="bi-trash"
+                           title="Delete"></i>
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmation</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                Você realmente quer deletar esse item?
+            </div>
+            <div class="modal-footer">
+                <form asp-action="remove">
+                    <input type="hidden" name="id" id="remove" />
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                    <button type="submit" class="btn btn-danger">Sim</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

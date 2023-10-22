@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34009.444
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculadoraNotaFIAP", "CalculadoraNotaFIAP\CalculadoraNotaFIAP.csproj", "{2BF9C7AF-A4AC-43E3-BFB7-E7C2E090247A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2BF9C7AF-A4AC-43E3-BFB7-E7C2E090247A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BF9C7AF-A4AC-43E3-BFB7-E7C2E090247A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BF9C7AF-A4AC-43E3-BFB7-E7C2E090247A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BF9C7AF-A4AC-43E3-BFB7-E7C2E090247A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E8B160B9-B5FA-440F-9FB7-8B21032C1C41}
+	EndGlobalSection
+EndGlobal

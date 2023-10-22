@@ -1,0 +1,17 @@
+﻿@model IdentityUser
+@{
+    ViewData["Title"] = "Delete";
+    ViewBag.Subtitulo = "User Deletion";
+}
+
+<h1 class="text-primary">@ViewBag.Subtitulo</h1>
+<hr>
+<h4>Você realmente quer deletar o usuário <b class="text-danger">@Model.UserName</b>?</h4>
+
+<form asp-action="DeletePost" class="w-25">
+    <input type="hidden" asp-for="@Model.Id">
+    <div class="mt-3">
+        <a asp-action="Index" class="btn btn-success">Não</a>
+        <button class="btn btn-danger" type="submit">Sim</button>
+    </div>
+</form>

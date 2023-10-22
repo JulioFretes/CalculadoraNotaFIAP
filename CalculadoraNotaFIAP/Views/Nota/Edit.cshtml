@@ -1,0 +1,15 @@
+﻿@model Nota
+@{
+    ViewData["Title"] = "Editar";
+    ViewBag.Subtitulo = "Editar nota"; 
+}
+
+<h1 class="text-primary">@ViewBag.Subtitulo</h1>
+<hr>
+
+
+<form asp-action="Edit">
+    <partial name="_Form"></partial>
+
+    <button class="btn btn-dark">Registro</button>
+</form>
