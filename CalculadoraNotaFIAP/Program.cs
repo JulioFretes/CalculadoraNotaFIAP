@@ -7,9 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var connection = builder.Configuration.GetConnectionString("conexao");
-
-builder.Services.AddDbContext<CalculadoraContext>(options => options.UseSqlServer(connection));
+builder.Services.AddDbContext<CalculadoraContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("conexao")));
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<CalculadoraContext>()
