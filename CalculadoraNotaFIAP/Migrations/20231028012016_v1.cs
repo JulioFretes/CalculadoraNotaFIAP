@@ -157,11 +157,35 @@ namespace CalculadoraNotaFIAP.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Materia",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<int>(type: "int", nullable: false),
+                    MediaFinal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Faltas = table.Column<int>(type: "int", nullable: false),
+                    QuantidadeAulas = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Materia", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Materia_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Nota",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Semestre = table.Column<int>(type: "int", nullable: false),
                     Cp1 = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Cp2 = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Cp3 = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -169,20 +193,17 @@ namespace CalculadoraNotaFIAP.Migrations
                     Sprint2 = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     GlobalSolution = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     NotaPrimeiroSemestre = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Semestre = table.Column<int>(type: "int", nullable: false),
-                    Materia = table.Column<int>(type: "int", nullable: false),
                     Calcular = table.Column<bool>(type: "bit", nullable: false),
                     Media = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    MediaFinal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    MateriaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Nota", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Nota_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
+                        name: "FK_Nota_Materia_MateriaId",
+                        column: x => x.MateriaId,
+                        principalTable: "Materia",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -227,9 +248,14 @@ namespace CalculadoraNotaFIAP.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Nota_UserId",
-                table: "Nota",
+                name: "IX_Materia_UserId",
+                table: "Materia",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Nota_MateriaId",
+                table: "Nota",
+                column: "MateriaId");
         }
 
         /// <inheritdoc />
@@ -255,6 +281,9 @@ namespace CalculadoraNotaFIAP.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Materia");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

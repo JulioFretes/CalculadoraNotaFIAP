@@ -7,6 +7,7 @@ namespace CalculadoraNotaFIAP.DataBase
 {
     public class CalculadoraContext : IdentityDbContext<IdentityUser>
     {
+        public DbSet<Materia> Materia { get; set; }
         public DbSet<Nota> Nota { get; set; }
         public CalculadoraContext(DbContextOptions options) : base(options) { }
     }

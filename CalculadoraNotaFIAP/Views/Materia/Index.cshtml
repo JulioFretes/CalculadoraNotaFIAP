@@ -1,4 +1,4 @@
-﻿@model List<Nota>
+﻿@model List<Materia>
 
 @{
     ViewData["Title"] = "Notas";
@@ -23,27 +23,21 @@
     <thead>
         <tr>
             <th scope="col">Matéria</th>
-            <th scope="col">Semestre</th>
-            <th scope="col">Média checkpoints</th>
-            <th scope="col">Média do Semestre</th>
             <th scope="col">Média Final</th>
             <th scope="col">Ações</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var nota in Model)
+        @foreach (var materia in Model)
         {
             <tr class="table-dark">
-                <td scope="row">@nota.Materia</td>
-                <td scope="row">@nota.Semestre</td>
-                <td scope="row">@nota.Media</td>
-                <td scope="row">@(nota.Semestre == SemestreAno.Primeiro ? (Math.Round((nota.Media + (nota.GlobalSolution * 0.6m)) * 0.4m, 2).ToString()) : (Math.Round((nota.Media + (nota.GlobalSolution * 0.6m)) * 0.6m, 2).ToString()))</td>
-                <td scope="row">@nota.MediaFinal</td>
+                <td scope="row">@materia.Nome</td>
+                <td scope="row">@materia.MediaFinal</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@nota.Id" class="btn btn-sm btn-secondary">
+                    <a asp-action="Edit" asp-route-id="@materia.Id" class="btn btn-sm btn-secondary">
                         <i class="bi-pencil" title="Edit"></i>
                     </a>
-                    <button onclick="remove.value = @nota.Id" type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button onclick="remove.value = @materia.Id" type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <i class="bi-trash"
                            title="Delete"></i>
                     </button>

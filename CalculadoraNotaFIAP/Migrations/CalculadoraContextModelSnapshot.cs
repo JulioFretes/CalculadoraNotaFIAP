@@ -22,6 +22,37 @@ namespace CalculadoraNotaFIAP.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("CalculadoraNotaFIAP.Models.Materia", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Faltas")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("MediaFinal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Nome")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuantidadeAulas")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Materia");
+                });
+
             modelBuilder.Entity("CalculadoraNotaFIAP.Models.Nota", b =>
                 {
                     b.Property<int>("Id")
@@ -45,13 +76,10 @@ namespace CalculadoraNotaFIAP.Migrations
                     b.Property<decimal>("GlobalSolution")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Materia")
+                    b.Property<int>("MateriaId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Media")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("MediaFinal")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("NotaPrimeiroSemestre")
@@ -66,13 +94,9 @@ namespace CalculadoraNotaFIAP.Migrations
                     b.Property<decimal>("Sprint2")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("MateriaId");
 
                     b.ToTable("Nota");
                 });
@@ -275,7 +299,7 @@ namespace CalculadoraNotaFIAP.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("CalculadoraNotaFIAP.Models.Nota", b =>
+            modelBuilder.Entity("CalculadoraNotaFIAP.Models.Materia", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
@@ -284,6 +308,17 @@ namespace CalculadoraNotaFIAP.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("CalculadoraNotaFIAP.Models.Nota", b =>
+                {
+                    b.HasOne("CalculadoraNotaFIAP.Models.Materia", "Materia")
+                        .WithMany("Notas")
+                        .HasForeignKey("MateriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Materia");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -335,6 +370,11 @@ namespace CalculadoraNotaFIAP.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CalculadoraNotaFIAP.Models.Materia", b =>
+                {
+                    b.Navigation("Notas");
                 });
 #pragma warning restore 612, 618
         }

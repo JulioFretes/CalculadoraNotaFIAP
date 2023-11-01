@@ -9,6 +9,9 @@ namespace CalculadoraNotaFIAP.Models
         [Key]
         public int Id { get; set; }
 
+        [Display(Name = "Semestre do ano")]
+        public SemestreAno Semestre { get; set; }
+
         [Display(Name = "Checkpoint 1")]
         public Decimal Cp1 { get; set; }
         [Display(Name = "Checkpoint 2")]
@@ -32,11 +35,11 @@ namespace CalculadoraNotaFIAP.Models
 
         public Decimal Media { get; set; }
 
-        public Decimal MediaFinal { get; set; }
-
-        public string UserId { get; set; }
-
-        [ForeignKey("UserId")]
-        public IdentityUser User { get; set; }
-    }    
+        public int MateriaId { get; set; }
+        public Materia Materia { get; set; }
+    }
+    public enum SemestreAno
+    {
+        Primeiro, Segundo
+    }
 }
