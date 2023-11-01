@@ -1,0 +1,118 @@
+﻿@model Materia
+
+<div class="form-group col-4">
+    <div class="form-group m-2">
+        <label asp-for="Nome"></label>
+        <div class="form-group ">
+            <select asp-for="Nome" asp-items="@Html.GetEnumSelectList<NomeMateria>()" class="form-control">
+                <option>Selecione</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group col-7 m-2">
+        <label asp-for="QuantidadeAulas"></label>
+        <div class="form-group col-6">
+            <input asp-for="QuantidadeAulas" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group col-7 m-2">
+        <label asp-for="Faltas"></label>
+        <div class="form-group col-6">
+            <input asp-for="Faltas" class="form-control" />
+        </div>
+    </div>
+</div>
+
+
+<div class="d-flex justify-content-around">
+    <fieldset class="p-5 m-5 border border-info rounded">
+        <h2 class="text-info m-2">Primeiro Semestre</h2>
+        <div class="form-group col-7 m-2">
+            <label asp-for="Notas[0].Cp1"></label>
+            <div class="form-group col-7">
+                <input asp-for="Notas[0].Cp1" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group col-7 m-2">
+            <label asp-for="Notas[0].Cp2"></label>
+            <div class="form-group col-7">
+                <input asp-for="Notas[0].Cp2" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group col-7 m-2">
+            <label asp-for="Notas[0].Cp3"></label>
+            <div class="form-group col-7">
+                <input asp-for="Notas[0].Cp3" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group col-7 m-2">
+            <label asp-for="Notas[0].Sprint1"></label>
+            <div class="form-group col-7">
+                <input asp-for="Notas[0].Sprint1" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group col-7 m-2">
+            <label asp-for="Notas[0].Sprint2"></label>
+            <div class="form-group col-7">
+                <input asp-for="Notas[0].Sprint2" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group col-7 m-2">
+            <label asp-for="Notas[0].GlobalSolution"></label>
+            <div class="form-group col-7">
+                <input asp-for="Notas[0].GlobalSolution" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group col-7 m-2">
+            <label asp-for="Notas[0].Media"></label>
+            <div class="form-group col-7">
+                <input asp-for="Notas[0].Media" class="form-control" />
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="p-5 m-5 border border-info rounded">
+        <h2 class="text-info m-2">Segundo Semestre</h2>
+        <div class="form-group col-7 m-2">
+            <label asp-for="Notas[1].Cp1"></label>
+            <div class="form-group col-7">
+                <input asp-for="Notas[1].Cp1" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group col-7 m-2">
+            <label asp-for="Notas[1].Cp2"></label>
+            <div class="form-group col-7">
+                <input asp-for="Notas[1].Cp2" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group col-7 m-2">
+            <label asp-for="Notas[1].Cp3"></label>
+            <div class="form-group col-7">
+                <input asp-for="Notas[1].Cp3" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group col-7 m-2">
+            <label asp-for="Notas[1].Sprint1"></label>
+            <div class="form-group col-7">
+                <input asp-for="Notas[1].Sprint1" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group col-7 m-2">
+            <label asp-for="Notas[1].Sprint2"></label>
+            <div class="form-group col-7">
+                <input asp-for="Notas[1].Sprint2" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group col-7 m-2">
+            <label asp-for="Notas[1].GlobalSolution"></label>
+            <div class="form-group col-7">
+                <input asp-for="Notas[1].GlobalSolution" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group col-7 m-2">
+            <label asp-for="Notas[1].Media"></label>
+            <div class="form-group col-7">
+                <input asp-for="Notas[1].Media" class="form-control" />
+            </div>
+        </div>
+    </fieldset>
+</div>
