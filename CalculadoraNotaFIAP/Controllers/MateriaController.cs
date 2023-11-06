@@ -105,7 +105,7 @@ namespace ProductList.Controllers
 
             if (materia.QuantidadeAulas > 0)
             {
-                materia.QuantidadeFaltas = (int)((materia.QuantidadeFaltas * 0.25) - materia.Faltas);
+                materia.QuantidadeFaltas = ((int)((materia.QuantidadeAulas * 0.25) - materia.Faltas) / 2);
             }
 
             materia.Notas[1].Semestre = SemestreAno.Segundo;
