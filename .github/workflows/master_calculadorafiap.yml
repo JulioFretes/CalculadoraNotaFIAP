@@ -58,6 +58,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'CalculadoraFIAP'
-          slot-name: 'Development'
+          slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_27B4DF3E132F4A04A1D7B3AAA614077E }}
           package: .
