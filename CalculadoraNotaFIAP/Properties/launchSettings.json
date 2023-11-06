@@ -5,7 +5,10 @@
     "iisExpress": {
       "applicationUrl": "http://localhost:41374",
       "sslPort": 44395
-    }
+    },
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
   },
   "profiles": {
     "CalculadoraNotaFIAP": {
