@@ -24,6 +24,7 @@
         <tr>
             <th scope="col">Matéria</th>
             <th scope="col">Média Final</th>
+            <th scope="col">Dias de Ausência Permitidos</th>
             <th scope="col">Ações</th>
         </tr>
     </thead>
@@ -33,6 +34,7 @@
             <tr class="table-dark">
                 <td scope="row">@materia.Nome</td>
                 <td scope="row">@materia.MediaFinal</td>
+                <td scope="row">@(materia.QuantidadeAulas > 0 ? materia.QuantidadeFaltas : "?" )</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@materia.Id" class="btn btn-sm btn-secondary">
                         <i class="bi-pencil" title="Edit"></i>

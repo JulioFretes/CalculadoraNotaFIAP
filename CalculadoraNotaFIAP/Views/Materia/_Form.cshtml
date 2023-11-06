@@ -26,6 +26,10 @@
 
 <div class="d-flex justify-content-around">
     <fieldset class="p-5 m-5 border border-info rounded">
+        <input asp-for="Notas[0].Id" type="hidden" class="form-control" />
+        <input asp-for="Notas[0].Semestre" type="hidden" class="form-control" />
+        <input asp-for="Notas[0].Materia" type="hidden" class="form-control" />
+        <input asp-for="Notas[0].MateriaId" type="hidden" class="form-control" />
         <h2 class="text-info m-2">Primeiro Semestre</h2>
         <div class="form-group col-7 m-2">
             <label asp-for="Notas[0].Cp1"></label>
@@ -71,6 +75,10 @@
         </div>
     </fieldset>
     <fieldset class="p-5 m-5 border border-info rounded">
+        <input asp-for="Notas[1].Id" type="hidden" class="form-control" />
+        <input asp-for="Notas[1].Semestre" type="hidden" class="form-control" />
+        <input asp-for="Notas[1].Materia" type="hidden" class="form-control" />
+        <input asp-for="Notas[1].MateriaId" type="hidden" class="form-control" />
         <h2 class="text-info m-2">Segundo Semestre</h2>
         <div class="form-group col-7 m-2">
             <label asp-for="Notas[1].Cp1"></label>

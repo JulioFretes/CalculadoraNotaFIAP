@@ -44,6 +44,11 @@ namespace ProductList.Controllers
         {
             materia.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+            if (materia.QuantidadeAulas > 0)
+            {
+                materia.QuantidadeFaltas = ((int)((materia.QuantidadeAulas * 0.25) - materia.Faltas) / 2);
+            }
+
             //if (materia.Calcular)
             //{
             //    decimal valorEsperado = (60m - materia.NotaPrimeiroSemestre) / 0.6m;
@@ -98,6 +103,11 @@ namespace ProductList.Controllers
         {
             materia.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+            if (materia.QuantidadeAulas > 0)
+            {
+                materia.QuantidadeFaltas = (int)((materia.QuantidadeFaltas * 0.25) - materia.Faltas);
+            }
+
             materia.Notas[1].Semestre = SemestreAno.Segundo;
 
             //if (materia.Calcular)
@@ -111,7 +121,7 @@ namespace ProductList.Controllers
             {
                 if (nota.Semestre == SemestreAno.Primeiro)
                 {
-                    if (nota.Media != 0)
+                    if (nota.Cp1 == 0 && nota.Cp2 == 0 && nota.Cp3 == 0 && nota.Sprint1 == 0 && nota.Sprint2 == 0 && nota.GlobalSolution == 0)
                     {
                         materia.MediaFinal += (nota.Media * 0.4m);
                     }
@@ -123,7 +133,7 @@ namespace ProductList.Controllers
                 }
                 else if (nota.Semestre == SemestreAno.Segundo)
                 {
-                    if (nota.Media != 0)
+                    if (nota.Cp1 == 0 && nota.Cp2 == 0 && nota.Cp3 == 0 && nota.Sprint1 == 0 && nota.Sprint2 == 0 && nota.GlobalSolution == 0)
                     {
                         materia.MediaFinal += (nota.Media * 0.6m);
                     }

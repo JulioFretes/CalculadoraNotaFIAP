@@ -25,13 +25,7 @@ namespace CalculadoraNotaFIAP.Models
         public Decimal Sprint2 { get; set; }
 
         [Display(Name = "Global Solution")]
-        public Decimal GlobalSolution { get; set; }
-
-        [Display(Name = "Media do primeiro semestre")]
-        public Decimal NotaPrimeiroSemestre { get; set; }        
-
-        [Display(Name = "Calcular nota mínima")]
-        public bool Calcular { get; set; }
+        public Decimal GlobalSolution { get; set; }   
 
         public Decimal Media { get; set; }
 

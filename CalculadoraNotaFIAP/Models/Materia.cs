@@ -15,8 +15,11 @@ namespace CalculadoraNotaFIAP.Models
         public Decimal MediaFinal { get; set; }        
 
         public int Faltas { get; set; }
+
         [Display(Name = "Quantidade de Aulas")]
         public int QuantidadeAulas { get; set; }
+
+        public int QuantidadeFaltas { get; set; }
 
         public virtual IList<Nota> Notas { get; set; }
 
