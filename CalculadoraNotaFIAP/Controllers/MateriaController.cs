@@ -24,7 +24,9 @@ namespace ProductList.Controllers
                 return RedirectToAction("Login", "User");
             }
 
-            var lista = _context.Materia.Where(x => x.UserId == User.FindFirstValue(ClaimTypes.NameIdentifier)).ToList();
+            var lista = _context.Materia
+                .Include(t => t.Notas)
+                .Where(x => x.UserId == User.FindFirstValue(ClaimTypes.NameIdentifier)).ToList();
 
             return View(lista);
         }
@@ -49,13 +51,6 @@ namespace ProductList.Controllers
                 materia.QuantidadeFaltas = ((int)((materia.QuantidadeAulas * 0.25) - materia.Faltas) / 2);
             }
 
-            //if (materia.Calcular)
-            //{
-            //    decimal valorEsperado = (60m - materia.NotaPrimeiroSemestre) / 0.6m;
-            //    valorEsperado = valorEsperado - (((materia.Cp1 + materia.Cp2 + materia.Sprint1 + materia.Sprint2) / 4 * 0.4m) + (materia.GlobalSolution * 0.6m));
-            //    valorEsperado = ((valorEsperado / 0.4m) * 2);
-            //}
-
             foreach (Nota nota in materia.Notas)
             {
                 if (nota.Semestre == SemestreAno.Primeiro)
@@ -66,8 +61,10 @@ namespace ProductList.Controllers
                     }
                     else
                     {
-                        materia.MediaFinal += Math.Round((((nota.Cp1 + nota.Cp2 + nota.Sprint1 + nota.Sprint2) / 4 * 0.4m) + (nota.GlobalSolution * 0.6m)) * 0.4m, 2);
-                        nota.Media = Math.Round(((nota.Cp1 + nota.Cp2 + nota.Sprint1 + nota.Sprint2) / 4 * 0.4m) + (nota.GlobalSolution * 0.6m), 2);
+                        decimal _valorCp = (nota.Cp1 + nota.Cp2 + nota.Cp3) - Math.Min(nota.Cp1, Math.Min(nota.Cp2, nota.Cp3));
+
+                        materia.MediaFinal += Math.Round((((_valorCp + nota.Sprint1 + nota.Sprint2) / 4 * 0.4m) + (nota.GlobalSolution * 0.6m)) * 0.4m, 2);
+                        nota.Media = Math.Round(((_valorCp + nota.Sprint1 + nota.Sprint2) / 4 * 0.4m) + (nota.GlobalSolution * 0.6m), 2);
                     }
                 }
                 else if (nota.Semestre == SemestreAno.Segundo)
@@ -78,8 +75,10 @@ namespace ProductList.Controllers
                     }
                     else
                     {
-                        materia.MediaFinal += Math.Round((((nota.Cp1 + nota.Cp2 + nota.Sprint1 + nota.Sprint2) / 4 * 0.4m) + (nota.GlobalSolution * 0.6m)) * 0.6m, 2);
-                        nota.Media = Math.Round(((nota.Cp1 + nota.Cp2 + nota.Sprint1 + nota.Sprint2) / 4 * 0.4m) + (nota.GlobalSolution * 0.6m), 2);
+                        decimal _valorCp = (nota.Cp1 + nota.Cp2 + nota.Cp3) - Math.Min(nota.Cp1, Math.Min(nota.Cp2, nota.Cp3));
+
+                        materia.MediaFinal += Math.Round((((_valorCp + nota.Sprint1 + nota.Sprint2) / 4 * 0.4m) + (nota.GlobalSolution * 0.6m)) * 0.6m, 2);
+                        nota.Media = Math.Round(((_valorCp + nota.Sprint1 + nota.Sprint2) / 4 * 0.4m) + (nota.GlobalSolution * 0.6m), 2);
                     }
                 }
             }
@@ -110,13 +109,6 @@ namespace ProductList.Controllers
 
             materia.Notas[1].Semestre = SemestreAno.Segundo;
 
-            //if (materia.Calcular)
-            //{
-            //    decimal valorEsperado = (60m - materia.NotaPrimeiroSemestre) / 0.6m;
-            //    valorEsperado = valorEsperado - (((materia.Cp1 + materia.Cp2 + materia.Sprint1 + materia.Sprint2) / 4 * 0.4m) + (materia.GlobalSolution * 0.6m));
-            //    valorEsperado = ((valorEsperado / 0.4m) * 2);
-            //}
-
             foreach (Nota nota in materia.Notas)
             {
                 if (nota.Semestre == SemestreAno.Primeiro)
@@ -127,8 +119,10 @@ namespace ProductList.Controllers
                     }
                     else
                     {
-                        materia.MediaFinal += Math.Round((((nota.Cp1 + nota.Cp2 + nota.Sprint1 + nota.Sprint2) / 4 * 0.4m) + (nota.GlobalSolution * 0.6m)) * 0.4m, 2);
-                        nota.Media = Math.Round(((nota.Cp1 + nota.Cp2 + nota.Sprint1 + nota.Sprint2) / 4 * 0.4m) + (nota.GlobalSolution * 0.6m), 2);
+                        decimal _valorCp = (nota.Cp1 + nota.Cp2 + nota.Cp3) - Math.Min(nota.Cp1, Math.Min(nota.Cp2, nota.Cp3));
+
+                        materia.MediaFinal += Math.Round((((_valorCp + nota.Sprint1 + nota.Sprint2) / 4 * 0.4m) + (nota.GlobalSolution * 0.6m)) * 0.4m, 2);
+                        nota.Media = Math.Round(((_valorCp + nota.Sprint1 + nota.Sprint2) / 4 * 0.4m) + (nota.GlobalSolution * 0.6m), 2);
                     }
                 }
                 else if (nota.Semestre == SemestreAno.Segundo)
@@ -139,7 +133,9 @@ namespace ProductList.Controllers
                     }
                     else
                     {
-                        materia.MediaFinal += Math.Round((((nota.Cp1 + nota.Cp2 + nota.Sprint1 + nota.Sprint2) / 4 * 0.4m) + (nota.GlobalSolution * 0.6m)) * 0.6m, 2);
+                        decimal _valorCp = (nota.Cp1 + nota.Cp2 + nota.Cp3) - Math.Min(nota.Cp1, Math.Min(nota.Cp2, nota.Cp3));
+
+                        materia.MediaFinal += Math.Round((((_valorCp + nota.Sprint1 + nota.Sprint2) / 4 * 0.4m) + (nota.GlobalSolution * 0.6m)) * 0.6m, 2);
                         nota.Media = Math.Round(((nota.Cp1 + nota.Cp2 + nota.Sprint1 + nota.Sprint2) / 4 * 0.4m) + (nota.GlobalSolution * 0.6m), 2);
                     }
                 }
