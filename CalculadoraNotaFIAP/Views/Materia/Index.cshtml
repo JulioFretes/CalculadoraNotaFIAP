@@ -22,10 +22,10 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <th scope="col">Matéria</th>
-            <th scope="col">Média Final</th>
+            <th scope="col">Matéria</th>            
             <th scope="col">Média Primeiro Semestre</th>
             <th scope="col">Média Segundo Semestre</th>
+            <th scope="col">Média Final</th>
             <th scope="col">Dias de Ausência Permitidos</th>
             <th scope="col">Ações</th>
         </tr>
@@ -34,10 +34,10 @@
         @foreach (var materia in Model)
         {
             <tr class="table-dark">
-                <td scope="row">@materia.Nome</td>
-                <td scope="row">@materia.MediaFinal</td>
+                <td scope="row">@materia.Nome</td>                
                 <td scope="row">@materia.Notas[0].Media</td>
                 <td scope="row">@materia.Notas[1].Media</td>
+                <td scope="row">@materia.MediaFinal</td>
                 <td scope="row">@(materia.QuantidadeAulas > 0 ? materia.QuantidadeFaltas : "?" )</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@materia.Id" class="btn btn-sm btn-secondary">
